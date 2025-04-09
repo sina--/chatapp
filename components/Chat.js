@@ -1,24 +1,54 @@
-import React, { useEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Platform, KeyboardAvoidingView, StyleSheet } from 'react-native';
+import { GiftedChat } from 'react-native-gifted-chat';
 
-// Chat screen component - displays the chat interface
 const Chat = ({ route, navigation }) => {
-  // Extract name and backgroundColor from route params
   const { name, backgroundColor } = route.params;
+  const [messages, setMessages] = useState([]);
 
-  // Set the screen title to the user's name
   useEffect(() => {
     navigation.setOptions({ title: name });
+    setMessages([
+      {
+        _id: 1,
+        text: 'Hello developer',
+        createdAt: new Date(),
+        user: {
+          _id: 2,
+          name: 'React Native',
+          avatar: 'https://placeimg.com/140/140/any',
+        },
+      },
+    ]);
   }, []);
+
+  const onSend = (newMessages = []) => {
+    setMessages(previousMessages =>
+      GiftedChat.append(previousMessages, newMessages)
+    );
+  };
 
   return (
     <View style={[styles.container, { backgroundColor }]}>
-      <Text style={styles.text}>
-        Hello {name}! Welcome to the Chat screen.
-      </Text>
-      <Text style={styles.text}>
-        Coming soon!
-      </Text>
+      {Platform.OS === 'android' ? (
+        <KeyboardAvoidingView 
+          style={styles.container}
+          behavior="height"
+          keyboardVerticalOffset={30}
+        >
+          <GiftedChat
+            messages={messages}
+            onSend={onSend}
+            user={{ _id: 1 }}
+          />
+        </KeyboardAvoidingView>
+      ) : (
+        <GiftedChat
+          messages={messages}
+          onSend={onSend}
+          user={{ _id: 1 }}
+        />
+      )}
     </View>
   );
 };
@@ -26,16 +56,7 @@ const Chat = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
-  text: {
-    fontSize: 16,
-    color: '#FFFFFF',
-    textAlign: 'center',
-    margin: 10,
-    fontFamily: 'Poppins-Regular'
-  }
 });
 
 export default Chat; 

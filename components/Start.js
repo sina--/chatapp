@@ -86,8 +86,7 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 45,
     fontWeight: '600',
-    color: '#FFFFFF',
-    fontFamily: 'Poppins-Bold'
+    color: '#FFFFFF'
   },
   inputContainer: {
     width: '88%',
@@ -108,8 +107,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     color: '#757083',
     fontSize: 16,
-    fontWeight: '300',
-    fontFamily: 'Poppins-Regular'
+    fontWeight: '300'
   },
   colorSelector: {
     width: '100%',
@@ -119,8 +117,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '300',
     color: '#757083',
-    marginBottom: 10,
-    fontFamily: 'Poppins-Regular'
+    marginBottom: 10
   },
   colorOptions: {
     flexDirection: 'row',
@@ -147,8 +144,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#FFFFFF',
     fontSize: 16,
-    fontWeight: '600',
-    fontFamily: 'Poppins-Medium'
+    fontWeight: '600'
   }
 });
 
