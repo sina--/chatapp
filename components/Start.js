@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, TextInput, ImageBackground, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
+import { StyleSheet, View, Text, TextInput, ImageBackground, TouchableOpacity, KeyboardAvoidingView, Platform, Image } from 'react-native';
 
 // Start screen component - allows user to enter their name and choose a background color
 const Start = ({ navigation }) => {
@@ -25,13 +25,19 @@ const Start = ({ navigation }) => {
 
         <View style={styles.inputContainer}>
           <View style={styles.inputWrapper}>
-            <TextInput
-              style={styles.textInput}
-              value={name}
-              onChangeText={setName}
-              placeholder='Your Name'
-              placeholderTextColor="#757083"
-            />
+            <View style={styles.inputIconWrapper}>
+              <Image
+                source={require('../assets/user-icon.png')}
+                style={styles.userIcon}
+              />
+              <TextInput
+                style={styles.textInput}
+                value={name}
+                onChangeText={setName}
+                placeholder='Your Name'
+                placeholderTextColor="#757083"
+              />
+            </View>
           </View>
 
           <View style={styles.colorSelector}>
@@ -99,15 +105,31 @@ const styles = StyleSheet.create({
     width: '100%',
     marginBottom: 20
   },
+  inputIconWrapper: {
+    position: 'relative',
+    width: '100%',
+    justifyContent: 'center',
+  },
+  userIcon: {
+    position: 'absolute',
+    left: 15,
+    top: '50%',
+    width: 20,
+    height: 20,
+    transform: [{ translateY: -10 }],
+    tintColor: '#757083',
+    zIndex: 1,
+  },
   textInput: {
     width: '100%',
     borderWidth: 1,
     borderColor: '#757083',
     padding: 15,
+    paddingLeft: 45,
     borderRadius: 5,
     color: '#757083',
     fontSize: 16,
-    fontWeight: '300'
+    fontWeight: '300',
   },
   colorSelector: {
     width: '100%',
